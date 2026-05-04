@@ -1,0 +1,373 @@
+\documentclass[10pt, ngerman, a4paper,toc=graduated, parskip=half, numbers=noenddot, headings=standardclasses, nonumberlist]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tgheros}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{babel}
+%\usepackage{lmodern}
+\usepackage[top=2.5cm, right=2.5cm, bottom=2cm, left=2.5cm, footskip=0.5cm]{geometry}
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage[official]{eurosym}
+\usepackage{lastpage}
+\usepackage{etoolbox}
+\usepackage{amssymb}
+\usepackage{enumitem}
+%\usepackage{natbib}
+%\bibliographystyle{agsm}
+\bibliographystyle{IEEETran}
+\usepackage[hidelinks]{hyperref}
+\usepackage{dramatist}
+\usepackage{listings}
+
+\usepackage[table]{xcolor}
+\usepackage{multirow}
+\usepackage{array}
+
+\usepackage[dvipsnames]{xcolor}
+\definecolor{beispielfarbe}{RGB}{28, 54, 97}
+
+\usepackage{adjustbox,lipsum}
+\usepackage{makecell}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage{array}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+
+\lstset{ 
+    breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+    breaklines=true,                 % sets automatic line breaking
+    frame=single,                    % adds a frame around the code
+    keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+    numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+    numbersep=5pt,                   % how far the line-numbers are from the code
+    numberstyle=\color{gray},        % the style that is used for the line-numbers
+    rulecolor=\color{black}         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+}
+
+\lstdefinelanguage{json}{
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\color{gray},
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    literate=
+     *{0}{{{\color{black}0}}}{1}
+      {1}{{{\color{black}1}}}{1}
+      {2}{{{\color{black}2}}}{1}
+      {3}{{{\color{black}3}}}{1}
+      {4}{{{\color{black}4}}}{1}
+      {5}{{{\color{black}5}}}{1}
+      {6}{{{\color{black}6}}}{1}
+      {7}{{{\color{black}7}}}{1}
+      {8}{{{\color{black}8}}}{1}
+      {9}{{{\color{black}9}}}{1}
+      {:}{{{\color{black}{:}}}}{1}
+      {,}{{{\color{black}{,}}}}{1}
+      {\{}{{{\color{black}{\{}}}}{1}
+      {\}}{{{\color{black}{\}}}}}{1}
+      {[}{{{\color{black}{[}}}}{1}
+      {]}{{{\color{black}{]}}}}{1},
+}
+
+\lstdefinelanguage{JavaScript}{
+    keywords={function, return, const, let, var, if, else, for, while, new, true, false, null},
+    sensitive=true,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[b]',
+}
+
+\usepackage[acronym, toc]{glossaries}
+\makenoidxglossaries
+
+
+% ------------- Beispiele für Abkürzungen
+\newacronym{erd}{ERD}{Entity-Relation-Diagram}
+\newacronym{mvp}{MVP}{Minimum Viable Product}
+
+
+% ------------- Beispiele für Glossareinträge
+\newglossaryentry{gitlabrunner}{name={GitLab-Runner},description={Anwendung, die auf Aktionen eines Git Repositories reagiert und vorkonfigurierte Jobs ausführt}}
+\newglossaryentry{rest}{name={REST}, description = {Representational State Transfer, Ein Paradigma für die Architektur von \gls{crud} Webanwendungen }}
+
+
+% ------------- Abbildungen mit Tikz erstellen
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata,shapes,calc}
+
+
+% ------------- Zeilenabstand
+\usepackage{setspace}
+\singlespacing
+
+% ------------- Kopfzeile
+\usepackage[automark]{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearscrheadings
+\ihead{}
+%\ihead[\rightmark]{\pagemark}
+\chead{}
+%\chead{}{}
+%\ohead{\pagemark}
+%\ohead[\pagemark]{\rightmark}
+\ofoot{\pagemark}
+%\ofoot[\pagemark]{\rightmark}
+
+
+\renewcommand{\contentsname}{Inhaltsverzeichnis}
+\renewcommand{\listfigurename}{Abbildungsverzeichnis}
+\renewcommand{\listtablename}{Tabellenverzeichnis}
+
+\RedeclareSectionCommand[
+  font=\normalfont\bfseries
+]{section}
+
+\RedeclareSectionCommand[
+  font=\normalfont\bfseries
+]{subsection}
+
+\RedeclareSectionCommand[
+  font=\normalfont\bfseries
+]{subsubsection}
+
+%-------------- Ende allgemeine Angaben -----------------------------
+\begin{document}
+
+%-------------- Beginn Titelseite -----------------------------------
+\hypersetup{pageanchor=false}
+\thispagestyle{empty}
+
+\vspace{1cm}
+
+\begin{figure}[htbp]
+    \centering
+
+    \begin{minipage}[t]{0.45\textwidth}
+        \raggedright
+        \includesvg[width=5cm,height=10cm,keepaspectratio]{images/logo_name}
+        \captionsetup{justification=raggedright,singlelinecheck=false}
+        \caption{Logo von xxx \cite{citation_name}}
+        \label{fig:abbildung_label}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \raggedleft
+        \includesvg[width=5cm,height=10cm,keepaspectratio]{images/logo2_name}
+        \captionsetup{justification=raggedleft,singlelinecheck=false}
+        \caption{Logo von yyy \cite{citation_name}}
+        \label{fig:abbildung2_label}
+    \end{minipage}
+
+\end{figure}
+
+\vspace{1cm}
+\begin{center}
+	{\Large Art des Arbeit} \\
+	\vspace{3cm}
+	{\huge \textbf{Titel}}\\
+    \vspace{0.3cm}
+    {\LARGE \textbf{{Untertitel}}}\\
+    
+\end{center}
+
+\vspace{1.5cm}
+\begin{center}
+	Abgabe: Ort, den TT.MM.JJJJ\\[4\baselineskip]
+	\textbf{\textcolor{beispielfarbe}{Vorname Nachname}}
+
+    Straße \& HNR \\
+    PLZ Ort \\
+    Prüflingsnummer: XXX \\
+    Ausbildungsgang \\[4\baselineskip]
+
+    Firmenname \\
+    Firmenadresse \\
+    Firmen-PLZ Firmen-Ort
+	
+	Betriebliche:r Ausbilder:in \\
+    Vorname Nachname
+
+    Fachliche:r Betreuer:in \\
+    Vorname Nachname \\
+\end{center}
+%-------------- Ende Titelseite -------------------------------------
+
+%-------------- Inhaltsverzeichnis
+\newpage
+\hypersetup{pageanchor=true}
+\pagenumbering{arabic}
+\renewcommand{\thepage}{\Roman{page}}
+\tableofcontents{}
+
+
+%-------------- Selbstständigkeitserklärung
+\newpage
+\cleardoublepage
+\addsec{Selbstständigkeitserklärung}
+
+Hiermit erkläre ich, dass ich die vorliegende Arbeit selbstständig und ohne fremde Hilfe angefertigt habe. 
+Alle Stellen, die wörtlich oder sinngemäß aus veröffentlichten oder nicht veröffentlichten Quellen übernommen wurden, 
+sind als solche kenntlich gemacht.
+
+Ich versichere außerdem, dass die Arbeit in gleicher oder ähnlicher Form noch keiner anderen Prüfungsstelle vorgelegt wurde.
+
+\vspace{2cm}
+
+\noindent
+\begin{tabular}{@{}p{6cm}p{6cm}@{}}
+Ort, Datum & Unterschrift \\[1.5cm]
+\hrulefill & \hrulefill
+\end{tabular}
+
+%-------------- Abbildungsverzeichnis
+\newpage
+\cleardoublepage\phantomsection
+\addcontentsline{toc}{section}{Abbildungsverzeichnis}
+\listoffigures
+\renewcommand{\figurename}{Abb.}
+
+%-------------- Abkürzungsverzeichnis
+\newpage
+\cleardoublepage\phantomsection
+\printnoidxglossary[type=\acronymtype, title= Abkürzungsverzeichnis]
+
+%-------------- Glossar
+\newpage
+\cleardoublepage\phantomsection
+\printnoidxglossary[title= Glossar]
+
+%-------------- Tabellenverzeichnis
+\newpage
+\cleardoublepage\phantomsection
+\addcontentsline{toc}{section}{Tabellenverzeichnis}
+\listoftables
+
+\newpage
+\pagenumbering{arabic}
+\renewcommand{\thepage}{\arabic{page}}
+
+%-------------- Beispiel einer Section
+\section{Beispiel einer Section}
+\label{beispiel_einer_section}
+Beispiel einer Abkürzung zu \gls{mvp}.
+%-------------- Einleitung
+
+%-------------- Beispiel einer Subsection
+\subsection{Beispiel einer Subsection}
+\label{beispiel_einer_subsection}
+Beispiel eines Glossareintrags \gls{gitlabrunner}
+%-------------- Beispiel einer Subsection
+
+%-------------- Beispiel einer Subsubsection
+\subsection{Beispiel einer Subsubsection}
+\label{beispiel_einer_subsubsection}
+%-------------- Beispiel einer Subsubsection
+
+%-------------- Literaturverzeichnis
+\newpage
+\addcontentsline{toc}{section}{Literatur}
+\bibliography{Quellen}
+
+%-------------- Anhang
+\newpage
+\appendix
+\section{Anhang}
+
+\newpage
+\subsection{Beispielcode zur Normalisierung und Fuzzy-Bewertung}
+\label{a1_normalisierung_fuzzy}
+
+\begin{lstlisting}[language=JavaScript, basicstyle=\ttfamily\small, numbers=none, caption={Normalisierung und Fuzzy-Bewertung}, label={lst:normalisierung_fuzzy}]
+function normalizeText(input) {
+    return String(input ?? "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+		.replace(/\u00DF/g, "ss")
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim()
+        .replace(/\s+/g, " ");
+}
+
+function tokenize(norm) {
+    if (!norm) return [];
+    return norm.split(" ").filter(Boolean);
+}
+
+function levenshtein(a, b) {
+    if (a === b) return 0;
+    if (!a) return b.length;
+    if (!b) return a.length;
+
+    const v0 = new Array(b.length + 1);
+    const v1 = new Array(b.length + 1);
+
+    for (let i = 0; i <= b.length; i++) v0[i] = i;
+
+    for (let i = 0; i < a.length; i++) {
+        v1[0] = i + 1;
+        for (let j = 0; j < b.length; j++) {
+            const cost = a[i] === b[j] ? 0 : 1;
+            v1[j + 1] = Math.min(
+                v1[j] + 1,
+                v0[j + 1] + 1,
+                v0[j] + cost
+            );
+        }
+        for (let j = 0; j <= b.length; j++) v0[j] = v1[j];
+    }
+
+    return v0[b.length];
+}
+
+function tokenJaccard(aTokens, bTokens) {
+    if (!aTokens.length || !bTokens.length) return 0;
+    const aSet = new Set(aTokens);
+    const bSet = new Set(bTokens);
+    let inter = 0;
+
+    for (const t of aSet) {
+        if (bSet.has(t)) inter++;
+    }
+
+    const union = new Set([...aSet, ...bSet]).size;
+    return union ? inter / union : 0;
+}
+
+function scoreCandidate(queryNorm, candNorm) {
+    if (!candNorm) return 0;
+    if (queryNorm === candNorm) return 1;
+
+    const qTokens = tokenize(queryNorm);
+    const cTokens = tokenize(candNorm);
+
+    let substringScore = 0;
+    if (queryNorm.length >= 3) {
+        if (queryNorm.includes(candNorm)) substringScore = 0.97;
+        else if (candNorm.includes(queryNorm)) substringScore = 0.93;
+    }
+
+    const tokenScore = tokenJaccard(qTokens, cTokens);
+    const dist = levenshtein(queryNorm, candNorm);
+    const levScore = 1 - dist / Math.max(queryNorm.length, candNorm.length);
+
+    return Math.max(
+        substringScore,
+        tokenScore * 0.9,
+        levScore * 0.88 + tokenScore * 0.12
+    );
+}
+\end{lstlisting}
+
+\end{document}
