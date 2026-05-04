@@ -16,8 +16,13 @@
 
 # Build folders
 out/
+!out/.gitkeep
 build/
 dist/
+
+# Others
+images/*
+!images/.gitkeep
 
 # Editor / OS
 .vscode/
@@ -26,6 +31,3 @@ dist/
 Thumbs.db
 "@ | Set-Content .gitignore
 
-# Others
-images/*
-!images/.gitkeep

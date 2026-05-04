@@ -65,8 +65,8 @@ settings.json
 - can be used with e.g. Zotero, just export the sources as bibtex file
 
 ## Tempaltes
-- Use different branches in order to access different templates
-- Make your own branches to create a specific document.
+- either clone this repository if you don't mind cloning the history
+    - or make a robocopy for a clean version
 
 ### VorlageArbeiten.tex 
 - This one is the basis for all other ones, so it is the most basic and may lack additions made to other templates 
