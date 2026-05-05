@@ -15,8 +15,7 @@
 *.lot
 
 # Build folders
-out/*
-!out/.gitkeep
+out/
 build/
 dist/
 
@@ -25,7 +24,6 @@ images/*
 !images/.gitkeep
 
 # Editor / OS
-.vscode/
 .idea/
 .DS_Store
 Thumbs.db
